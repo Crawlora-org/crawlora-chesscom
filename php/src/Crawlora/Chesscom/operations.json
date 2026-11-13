@@ -1,0 +1,815 @@
+{
+  "platform": "chesscom",
+  "operationCount": 26,
+  "operationIds": [
+    "chesscom-club",
+    "chesscom-club-matches",
+    "chesscom-club-members",
+    "chesscom-country",
+    "chesscom-match",
+    "chesscom-match-board",
+    "chesscom-match-live",
+    "chesscom-match-live-board",
+    "chesscom-player",
+    "chesscom-player-clubs",
+    "chesscom-player-game-archives",
+    "chesscom-player-game-month",
+    "chesscom-player-game-month-pgn",
+    "chesscom-player-games",
+    "chesscom-player-games-to-move",
+    "chesscom-player-is-online",
+    "chesscom-player-live-games",
+    "chesscom-player-live-games-base-time",
+    "chesscom-player-matches",
+    "chesscom-player-stats",
+    "chesscom-player-tournaments",
+    "chesscom-puzzle",
+    "chesscom-puzzle-random",
+    "chesscom-tournament",
+    "chesscom-tournament-round",
+    "chesscom-tournament-round-group"
+  ],
+  "methods": {
+    "club": "chesscom-club",
+    "club_matches": "chesscom-club-matches",
+    "club_members": "chesscom-club-members",
+    "country": "chesscom-country",
+    "match_live": "chesscom-match-live",
+    "match_live_board": "chesscom-match-live-board",
+    "match": "chesscom-match",
+    "match_board": "chesscom-match-board",
+    "player": "chesscom-player",
+    "player_clubs": "chesscom-player-clubs",
+    "player_games": "chesscom-player-games",
+    "player_game_month": "chesscom-player-game-month",
+    "player_game_month_pgn": "chesscom-player-game-month-pgn",
+    "player_game_archives": "chesscom-player-game-archives",
+    "player_live_games_base_time": "chesscom-player-live-games-base-time",
+    "player_live_games": "chesscom-player-live-games",
+    "player_games_to_move": "chesscom-player-games-to-move",
+    "player_is_online": "chesscom-player-is-online",
+    "player_matches": "chesscom-player-matches",
+    "player_stats": "chesscom-player-stats",
+    "player_tournaments": "chesscom-player-tournaments",
+    "puzzle": "chesscom-puzzle",
+    "puzzle_random": "chesscom-puzzle-random",
+    "tournament": "chesscom-tournament",
+    "tournament_round": "chesscom-tournament-round",
+    "tournament_round_group": "chesscom-tournament-round-group"
+  },
+  "operations": {
+    "chesscom-club": {
+      "id": "chesscom-club",
+      "method": "GET",
+      "path": "/chesscom/club/{slug}",
+      "pathParams": [
+        "slug"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com club URL ID",
+          "in": "path",
+          "name": "slug",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-club-matches": {
+      "id": "chesscom-club-matches",
+      "method": "GET",
+      "path": "/chesscom/club/{slug}/matches",
+      "pathParams": [
+        "slug"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com club URL ID",
+          "in": "path",
+          "name": "slug",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-club-members": {
+      "id": "chesscom-club-members",
+      "method": "GET",
+      "path": "/chesscom/club/{slug}/members",
+      "pathParams": [
+        "slug"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com club URL ID",
+          "in": "path",
+          "name": "slug",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-country": {
+      "id": "chesscom-country",
+      "method": "GET",
+      "path": "/chesscom/country/{iso}",
+      "pathParams": [
+        "iso"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Two-character uppercase ISO country code or documented Chess.com region code",
+          "in": "path",
+          "name": "iso",
+          "required": true,
+          "type": "string",
+          "x-example": "IT"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-match-live": {
+      "id": "chesscom-match-live",
+      "method": "GET",
+      "path": "/chesscom/live-match/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Positive Chess.com live team match ID",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-match-live-board": {
+      "id": "chesscom-match-live-board",
+      "method": "GET",
+      "path": "/chesscom/live-match/{id}/{board}",
+      "pathParams": [
+        "id",
+        "board"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Positive Chess.com live team match ID",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "description": "Source board number",
+          "in": "path",
+          "name": "board",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-match": {
+      "id": "chesscom-match",
+      "method": "GET",
+      "path": "/chesscom/match/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Positive Chess.com team match ID",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-match-board": {
+      "id": "chesscom-match-board",
+      "method": "GET",
+      "path": "/chesscom/match/{id}/{board}",
+      "pathParams": [
+        "id",
+        "board"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Positive Chess.com team match ID",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "description": "Source board number",
+          "in": "path",
+          "name": "board",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player": {
+      "id": "chesscom-player",
+      "method": "GET",
+      "path": "/chesscom/player/{username}",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-clubs": {
+      "id": "chesscom-player-clubs",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/clubs",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-games": {
+      "id": "chesscom-player-games",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/games",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-game-month": {
+      "id": "chesscom-player-game-month",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/games/archive/{year}/{month}",
+      "pathParams": [
+        "username",
+        "year",
+        "month"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Four-digit game-end year",
+          "in": "path",
+          "name": "year",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Game-end month, 1 through 12",
+          "in": "path",
+          "name": "month",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-game-month-pgn": {
+      "id": "chesscom-player-game-month-pgn",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/games/archive/{year}/{month}/pgn",
+      "pathParams": [
+        "username",
+        "year",
+        "month"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Four-digit game-end year",
+          "in": "path",
+          "name": "year",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Game-end month, 1 through 12",
+          "in": "path",
+          "name": "month",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-game-archives": {
+      "id": "chesscom-player-game-archives",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/games/archives",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-live-games-base-time": {
+      "id": "chesscom-player-live-games-base-time",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/games/live/{base_time}",
+      "pathParams": [
+        "username",
+        "base_time"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Base time in seconds",
+          "in": "path",
+          "name": "base_time",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-live-games": {
+      "id": "chesscom-player-live-games",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/games/live/{base_time}/{increment}",
+      "pathParams": [
+        "username",
+        "base_time",
+        "increment"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Base time in seconds",
+          "in": "path",
+          "name": "base_time",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "description": "Increment in seconds",
+          "in": "path",
+          "name": "increment",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-games-to-move": {
+      "id": "chesscom-player-games-to-move",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/games/to-move",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-is-online": {
+      "id": "chesscom-player-is-online",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/is-online",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-matches": {
+      "id": "chesscom-player-matches",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/matches",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-stats": {
+      "id": "chesscom-player-stats",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/stats",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-player-tournaments": {
+      "id": "chesscom-player-tournaments",
+      "method": "GET",
+      "path": "/chesscom/player/{username}/tournaments",
+      "pathParams": [
+        "username"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com username",
+          "in": "path",
+          "name": "username",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-puzzle": {
+      "id": "chesscom-puzzle",
+      "method": "GET",
+      "path": "/chesscom/puzzle",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-puzzle-random": {
+      "id": "chesscom-puzzle-random",
+      "method": "GET",
+      "path": "/chesscom/puzzle/random",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-tournament": {
+      "id": "chesscom-tournament",
+      "method": "GET",
+      "path": "/chesscom/tournament/{slug}",
+      "pathParams": [
+        "slug"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com tournament URL ID",
+          "in": "path",
+          "name": "slug",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-tournament-round": {
+      "id": "chesscom-tournament-round",
+      "method": "GET",
+      "path": "/chesscom/tournament/{slug}/{round}",
+      "pathParams": [
+        "slug",
+        "round"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com tournament URL ID",
+          "in": "path",
+          "name": "slug",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Source round number",
+          "in": "path",
+          "name": "round",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "chesscom-tournament-round-group": {
+      "id": "chesscom-tournament-round-group",
+      "method": "GET",
+      "path": "/chesscom/tournament/{slug}/{round}/{group}",
+      "pathParams": [
+        "slug",
+        "round",
+        "group"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Chess.com tournament URL ID",
+          "in": "path",
+          "name": "slug",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Source round number",
+          "in": "path",
+          "name": "round",
+          "required": true,
+          "type": "integer"
+        },
+        {
+          "description": "Source group number",
+          "in": "path",
+          "name": "group",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    }
+  }
+}

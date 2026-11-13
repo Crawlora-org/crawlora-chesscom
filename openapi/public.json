@@ -1,0 +1,2140 @@
+{
+  "basePath": "/api/v1",
+  "definitions": {
+    "app.Response": {
+      "description": "The Response struct is used for wrapping the API response with a code, message, and data.",
+      "properties": {
+        "code": {
+          "description": "Code is the HTTP status code or a custom code used to indicate the result of the request\n@example 200",
+          "type": "integer"
+        },
+        "data": {
+          "description": "Data is the response data (can be any object or null)\n@example {\"id\": 1, \"name\": \"John Doe\"}"
+        },
+        "msg": {
+          "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "chesscom.CountryProfileData": {
+      "properties": {
+        "@id": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chesscom.CountryProfileResponse": {
+      "properties": {
+        "cache_control": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/chesscom.CountryProfileData"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chesscom.PublicDataResponse": {
+      "properties": {
+        "cache_control": {
+          "type": "string"
+        },
+        "data": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "etag": {
+          "type": "string"
+        },
+        "last_modified": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chesscom.PublicPGNResponse": {
+      "properties": {
+        "cache_control": {
+          "type": "string"
+        },
+        "content_disposition": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        },
+        "etag": {
+          "type": "string"
+        },
+        "last_modified": {
+          "type": "string"
+        },
+        "pgn": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chesscom.PuzzleData": {
+      "properties": {
+        "fen": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "pgn": {
+          "description": "Movetext only; PGN player/event headers are removed.",
+          "type": "string"
+        },
+        "publish_time": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "chesscom.PuzzleResponse": {
+      "properties": {
+        "cache_control": {
+          "type": "string"
+        },
+        "data": {
+          "$ref": "#/definitions/chesscom.PuzzleData"
+        },
+        "source_url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "api.crawlora.net",
+  "info": {
+    "contact": {
+      "email": "support@crawlora.net",
+      "name": "API Support",
+      "url": "https://crawlora.net"
+    },
+    "description": "Crawlora is a hosted web-data and SERP API: call documented REST endpoints and get normalized JSON instead of HTML to parse — across search/SERP, maps and local, e-commerce, app stores, social, media and finance. One API key; Crawlora runs the proxy rotation, headless browsers and parsing behind the scenes. Billed pay-on-success: charged only on a successful 2xx response, 1-10 credits per call, with a free tier of 2,000 credits per month and no card. A hosted MCP server (mcp.crawlora.net/mcp) exposes the same catalog as agent tools. Search endpoints accept `q` as a universal alias for whichever search-term parameter they document (`query`, `term`, `keyword`, or Amazon's `k`), so one parameter name works across the whole catalog; an explicitly supplied documented name always wins.",
+    "license": {
+      "name": "Crawlora Terms of Service",
+      "url": "https://crawlora.net/terms"
+    },
+    "termsOfService": "https://crawlora.net/terms",
+    "title": "Crawlora API",
+    "version": "1.2",
+    "x-logo": {
+      "altText": "Crawlora",
+      "backgroundColor": "#FFFFFF",
+      "url": "https://raw.githubusercontent.com/Crawlora-org/crawlora-mcp/main/assets/logo-400x400.png"
+    }
+  },
+  "paths": {
+    "/chesscom/club/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the public profile data for one caller-selected club URL ID. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-club",
+        "parameters": [
+          {
+            "description": "Chess.com club URL ID",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Chess.com club profile",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/club/{slug}/matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the registered, in-progress and finished team matches for one caller-selected public club. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-club-matches",
+        "parameters": [
+          {
+            "description": "Chess.com club URL ID",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List one club’s team matches",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/club/{slug}/members": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the source member groups for one caller-selected public club; it does not discover other clubs. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-club-members",
+        "parameters": [
+          {
+            "description": "Chess.com club URL ID",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List one club’s members",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/country/{iso}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the Published-Data API country profile fields only: self URL, country name, and code. Player and club indexes are not requested. This independent service is not affiliated with Chess.com.",
+        "operationId": "chesscom-country",
+        "parameters": [
+          {
+            "description": "Two-character uppercase ISO country code or documented Chess.com region code",
+            "in": "path",
+            "name": "iso",
+            "required": true,
+            "type": "string",
+            "x-example": "IT"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.CountryProfileResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Chess.com country metadata",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/live-match/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the public source details for one caller-selected live team match ID. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-match-live",
+        "parameters": [
+          {
+            "description": "Positive Chess.com live team match ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a live Chess.com team match",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/live-match/{id}/{board}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns source game and score data for one board of a caller-selected live team match. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-match-live-board",
+        "parameters": [
+          {
+            "description": "Positive Chess.com live team match ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Source board number",
+            "in": "path",
+            "name": "board",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a live team match board",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/match/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the public source details for one caller-selected team match ID. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-match",
+        "parameters": [
+          {
+            "description": "Positive Chess.com team match ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Chess.com team match",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/match/{id}/{board}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns source game and score data for one board of a caller-selected team match. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-match-board",
+        "parameters": [
+          {
+            "description": "Positive Chess.com team match ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Source board number",
+            "in": "path",
+            "name": "board",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a team match board",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one caller-selected player profile from Chess.com’s documented Published-Data API, including the public fields published for that username. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a public Chess.com player profile",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/clubs": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the public club records Chess.com lists for one caller-selected player. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-clubs",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a player’s public clubs",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/games": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the source list of current Daily Chess games for one caller-selected player. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-games",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a player’s current Daily Chess games",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/games/archive/{year}/{month}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one source-native archive for the caller-selected player, year and month. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-game-month",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Four-digit game-end year",
+            "in": "path",
+            "name": "year",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game-end month, 1 through 12",
+            "in": "path",
+            "name": "month",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a monthly player game archive",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/games/archive/{year}/{month}/pgn": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one source-native PGN download for a caller-selected player, year and month. It does not walk other archive months. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-game-month-pgn",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Four-digit game-end year",
+            "in": "path",
+            "name": "year",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Game-end month, 1 through 12",
+            "in": "path",
+            "name": "month",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicPGNResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a monthly PGN game archive",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/games/archives": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the monthly archive URLs Chess.com publishes for one caller-selected player. The route does not follow or collect those archives. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-game-archives",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a player’s monthly game archives",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/games/live/{base_time}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one source-native finished live-game archive using the documented path variant where increment is omitted. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-live-games-base-time",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Base time in seconds",
+            "in": "path",
+            "name": "base_time",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get live games by base time",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/games/live/{base_time}/{increment}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one source-native finished live-game archive for the caller-selected player and base-time/increment pair. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-live-games",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Base time in seconds",
+            "in": "path",
+            "name": "base_time",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Increment in seconds",
+            "in": "path",
+            "name": "increment",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get live games by time control",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/games/to-move": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the source list of Daily Chess games where one caller-selected player is expected to move. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-games-to-move",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a player’s Daily Chess games to move",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/is-online": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the documented five-minute online-status value for one caller-selected player; it is a point-in-time source value, not history. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-is-online",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Chess.com player online status",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/matches": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns finished, in-progress and registered team-match records for one caller-selected player. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-matches",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a player’s team-match records",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/stats": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns ratings, records, tactics, lessons and Puzzle Rush statistics published for one caller-selected player. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-stats",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Chess.com player statistics",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/player/{username}/tournaments": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns finished, in-progress and registered tournament records for one caller-selected player. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-player-tournaments",
+        "parameters": [
+          {
+            "description": "Chess.com username",
+            "in": "path",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a player’s tournament records",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/puzzle": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the current public Chess.com puzzle, including its source page link, publish time, FEN and PGN. It uses the read-only Published-Data API and does not request player/account data. This independent service is not affiliated with Chess.com.",
+        "operationId": "chesscom-puzzle",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PuzzleResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Chess.com daily puzzle",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/puzzle/random": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one random public Chess.com daily puzzle using the upstream /pub/puzzle/random resource. The upstream may cache its random choice briefly. No player/account data is requested. This independent service is not affiliated with Chess.com.",
+        "operationId": "chesscom-puzzle-random",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PuzzleResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Chess.com random daily puzzle",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/tournament/{slug}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns source tournament details, settings, participants and round URLs for one caller-selected tournament URL ID. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-tournament",
+        "parameters": [
+          {
+            "description": "Chess.com tournament URL ID",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Chess.com tournament",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/tournament/{slug}/{round}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns source participant and group data for one caller-selected tournament round. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-tournament-round",
+        "parameters": [
+          {
+            "description": "Chess.com tournament URL ID",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Source round number",
+            "in": "path",
+            "name": "round",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a tournament round",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    },
+    "/chesscom/tournament/{slug}/{round}/{group}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns source game and standings data for one caller-selected tournament round group. This standalone service is not affiliated with Chess.com. Do not use these results for AI model training or dataset creation.",
+        "operationId": "chesscom-tournament-round-group",
+        "parameters": [
+          {
+            "description": "Chess.com tournament URL ID",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Source round number",
+            "in": "path",
+            "name": "round",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Source group number",
+            "in": "path",
+            "name": "group",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/app.Response"
+                },
+                {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/definitions/chesscom.PublicDataResponse"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a tournament round group",
+        "tags": [
+          "chesscom"
+        ]
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "in": "header",
+      "name": "x-api-key",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "name": "chesscom"
+    }
+  ]
+}

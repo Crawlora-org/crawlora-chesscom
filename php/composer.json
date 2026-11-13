@@ -1,0 +1,48 @@
+{
+  "name": "crawlora/chesscom",
+  "description": "Crawlora Chess.com API client with 26 endpoints for puzzles, player and club resources, tournaments, and public team matches",
+  "keywords": [
+    "crawlora",
+    "api-client",
+    "sdk",
+    "web-scraping",
+    "scraping-api",
+    "chesscom",
+    "chess-com",
+    "chesscom-api",
+    "chess-com-api",
+    "chesscom-scraper",
+    "chess-com-scraper",
+    "chesscom-data",
+    "chess-com-data",
+    "chesscom-puzzles",
+    "chesscom-player-club-resources",
+    "chesscom-tournaments",
+    "chesscom-public-team-matches"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Crawlora\\Chesscom\\": "src/Crawlora/Chesscom/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Crawlora\\Chesscom\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "php tests/client_test.php"
+  },
+  "homepage": "https://crawlora.net/?utm_source=packagist&utm_medium=referral&utm_campaign=platform-clients&utm_content=chesscom-php-homepage",
+  "support": {
+    "source": "https://github.com/Crawlora-org/crawlora-chesscom",
+    "docs": "https://crawlora.net/docs?utm_source=packagist&utm_medium=referral&utm_campaign=platform-clients&utm_content=chesscom-php-api-docs"
+  }
+}
