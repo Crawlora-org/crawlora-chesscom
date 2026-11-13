@@ -13,7 +13,9 @@ pub struct Services {
 impl Services {
     pub(crate) fn new(inner: Arc<ClientInner>) -> Self {
         Self {
-            chesscom: ChesscomApi { inner: Arc::clone(&inner) },
+            chesscom: ChesscomApi {
+                inner: Arc::clone(&inner),
+            },
         }
     }
 }
@@ -205,86 +207,130 @@ pub struct ChesscomApi {
 
 impl ChesscomApi {
     pub async fn club(&self, params: ChesscomClubParams) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-club", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-club", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn club_matches(
         &self,
         params: ChesscomClubMatchesParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-club-matches", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-club-matches", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn club_members(
         &self,
         params: ChesscomClubMembersParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-club-members", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-club-members", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn country(&self, params: ChesscomCountryParams) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-country", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-country", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn match_live(&self, params: ChesscomMatchLiveParams) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-match-live", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-match-live", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn match_live_board(
         &self,
         params: ChesscomMatchLiveBoardParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-match-live-board", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-match-live-board",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn match_(&self, params: ChesscomMatchParams) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-match", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-match", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn match_board(
         &self,
         params: ChesscomMatchBoardParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-match-board", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-match-board", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn player(&self, params: ChesscomPlayerParams) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-player", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn player_clubs(
         &self,
         params: ChesscomPlayerClubsParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-clubs", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-player-clubs", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn player_games(
         &self,
         params: ChesscomPlayerGamesParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-games", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-player-games", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn player_game_month(
         &self,
         params: ChesscomPlayerGameMonthParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-game-month", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-game-month",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn player_game_month_pgn(
         &self,
         params: ChesscomPlayerGameMonthPgnParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-game-month-pgn", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-game-month-pgn",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn player_game_archives(
         &self,
         params: ChesscomPlayerGameArchivesParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-game-archives", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-game-archives",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn player_live_games_base_time(
@@ -304,71 +350,120 @@ impl ChesscomApi {
         &self,
         params: ChesscomPlayerLiveGamesParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-live-games", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-live-games",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn player_games_to_move(
         &self,
         params: ChesscomPlayerGamesToMoveParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-games-to-move", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-games-to-move",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn player_is_online(
         &self,
         params: ChesscomPlayerIsOnlineParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-is-online", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-is-online",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn player_matches(
         &self,
         params: ChesscomPlayerMatchesParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-matches", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-matches",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn player_stats(
         &self,
         params: ChesscomPlayerStatsParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-stats", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-player-stats", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn player_tournaments(
         &self,
         params: ChesscomPlayerTournamentsParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-player-tournaments", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-player-tournaments",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn puzzle(&self, params: ChesscomPuzzleParams) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-puzzle", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-puzzle", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn puzzle_random(
         &self,
         params: ChesscomPuzzleRandomParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-puzzle-random", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-puzzle-random", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn tournament(&self, params: ChesscomTournamentParams) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-tournament", &params, RequestOptions::default()).await
+        self.inner
+            .call("chesscom-tournament", &params, RequestOptions::default())
+            .await
     }
 
     pub async fn tournament_round(
         &self,
         params: ChesscomTournamentRoundParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-tournament-round", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-tournament-round",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
 
     pub async fn tournament_round_group(
         &self,
         params: ChesscomTournamentRoundGroupParams,
     ) -> Result<ApiResponse, Error> {
-        self.inner.call("chesscom-tournament-round-group", &params, RequestOptions::default()).await
+        self.inner
+            .call(
+                "chesscom-tournament-round-group",
+                &params,
+                RequestOptions::default(),
+            )
+            .await
     }
-
 }

@@ -29,11 +29,19 @@ pub struct ModelChesscomCountryProfileData {
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ModelChesscomCountryProfileResponse {
-    #[serde(rename = "cache_control", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "cache_control",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub cache_control: Option<String>,
     #[serde(rename = "data", default, skip_serializing_if = "Option::is_none")]
     pub data: Option<ModelChesscomCountryProfileData>,
-    #[serde(rename = "source_url", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "source_url",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub source_url: Option<String>,
     #[serde(flatten)]
     pub additional: BTreeMap<String, Value>,
@@ -41,15 +49,27 @@ pub struct ModelChesscomCountryProfileResponse {
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ModelChesscomPublicDataResponse {
-    #[serde(rename = "cache_control", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "cache_control",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub cache_control: Option<String>,
     #[serde(rename = "data", default, skip_serializing_if = "Option::is_none")]
     pub data: Option<std::collections::BTreeMap<String, serde_json::Value>>,
     #[serde(rename = "etag", default, skip_serializing_if = "Option::is_none")]
     pub etag: Option<String>,
-    #[serde(rename = "last_modified", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "last_modified",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub last_modified: Option<String>,
-    #[serde(rename = "source_url", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "source_url",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub source_url: Option<String>,
     #[serde(flatten)]
     pub additional: BTreeMap<String, Value>,
@@ -57,19 +77,39 @@ pub struct ModelChesscomPublicDataResponse {
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ModelChesscomPublicPgnresponse {
-    #[serde(rename = "cache_control", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "cache_control",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub cache_control: Option<String>,
-    #[serde(rename = "content_disposition", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "content_disposition",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub content_disposition: Option<String>,
-    #[serde(rename = "content_type", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "content_type",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub content_type: Option<String>,
     #[serde(rename = "etag", default, skip_serializing_if = "Option::is_none")]
     pub etag: Option<String>,
-    #[serde(rename = "last_modified", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "last_modified",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub last_modified: Option<String>,
     #[serde(rename = "pgn", default, skip_serializing_if = "Option::is_none")]
     pub pgn: Option<String>,
-    #[serde(rename = "source_url", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "source_url",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub source_url: Option<String>,
     #[serde(flatten)]
     pub additional: BTreeMap<String, Value>,
@@ -83,7 +123,11 @@ pub struct ModelChesscomPuzzleData {
     pub image: Option<String>,
     #[serde(rename = "pgn", default, skip_serializing_if = "Option::is_none")]
     pub pgn: Option<String>,
-    #[serde(rename = "publish_time", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "publish_time",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub publish_time: Option<i64>,
     #[serde(rename = "title", default, skip_serializing_if = "Option::is_none")]
     pub title: Option<String>,
@@ -95,11 +139,19 @@ pub struct ModelChesscomPuzzleData {
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct ModelChesscomPuzzleResponse {
-    #[serde(rename = "cache_control", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "cache_control",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub cache_control: Option<String>,
     #[serde(rename = "data", default, skip_serializing_if = "Option::is_none")]
     pub data: Option<ModelChesscomPuzzleData>,
-    #[serde(rename = "source_url", default, skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "source_url",
+        default,
+        skip_serializing_if = "Option::is_none"
+    )]
     pub source_url: Option<String>,
     #[serde(flatten)]
     pub additional: BTreeMap<String, Value>,
