@@ -26,7 +26,7 @@ final class Client
     private ?\Closure $transport;
 
     public const PLATFORM = 'chesscom';
-    public const VERSION = '0.1.0';
+    public const VERSION = '0.1.1';
     public const OPERATION_COUNT = 26;
     public const OPERATION_IDS = ["chesscom-club", "chesscom-club-matches", "chesscom-club-members", "chesscom-country", "chesscom-match", "chesscom-match-board", "chesscom-match-live", "chesscom-match-live-board", "chesscom-player", "chesscom-player-clubs", "chesscom-player-game-archives", "chesscom-player-game-month", "chesscom-player-game-month-pgn", "chesscom-player-games", "chesscom-player-games-to-move", "chesscom-player-is-online", "chesscom-player-live-games", "chesscom-player-live-games-base-time", "chesscom-player-matches", "chesscom-player-stats", "chesscom-player-tournaments", "chesscom-puzzle", "chesscom-puzzle-random", "chesscom-tournament", "chesscom-tournament-round", "chesscom-tournament-round-group"];
 
@@ -57,7 +57,7 @@ JSON, true, 512, JSON_THROW_ON_ERROR);
         $url = $this->buildUrl($operation, $params);
         $headers = [
             'x-api-key: ' . $this->apiKey,
-            'User-Agent: crawlora-chesscom-php/0.1.0',
+            'User-Agent: crawlora-chesscom-php/0.1.1',
             'Accept: ' . (in_array('text/plain', $operation['produces'], true) ? 'application/json, text/plain' : 'application/json'),
         ];
         if ($payload !== null) {

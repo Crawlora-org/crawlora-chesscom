@@ -2,11 +2,11 @@
   "api_path_prefix": "/chesscom/",
   "async_class_name": "AsyncChessComClient",
   "class_name": "ChessComClient",
-  "contract_revision": "sha256:24942ed44f40dfeeb9e9c8cb74152690adfab8ebe286196ee747524c2007a928",
+  "contract_revision": "sha256:bb52aafac634d8bd443235e38fe6f1e7503b53f83d9e87a10df59858337a4628",
   "display_name": "Chess.com",
   "general_sdk_version": "1.50.0-sdk.1",
   "golang_module_name": "github.com/Crawlora-org/crawlora-chesscom",
-  "golang_version": "0.1.0",
+  "golang_version": "0.1.1",
   "group_name": "chesscom",
   "java_description": "Java client for Crawlora's hosted Chess.com API, with puzzles, player and club resources, tournaments, and public team matches. Requires a Crawlora API key.",
   "maven_artifact_id": "crawlora-chesscom",
@@ -17,10 +17,27 @@
   "php_repository": "https://github.com/Crawlora-org/crawlora-chesscom",
   "platform": "chesscom",
   "python_name": "crawlora-chesscom",
+  "releases": [
+    {
+      "changes": [
+        "Updated operation contracts: chesscom-puzzle, chesscom-puzzle-random."
+      ],
+      "date": "2026-11-23",
+      "version": "0.1.1"
+    },
+    {
+      "changes": [
+        "Initial Chess.com platform clients for Crawlora's hosted API across JavaScript/TypeScript, Python, Go, Ruby, Java, PHP, and Rust.",
+        "Includes typed endpoint methods generated from contract revision `sha256:24942ed44f40dfeeb9e9c8cb74152690adfab8ebe286196ee747524c2007a928`."
+      ],
+      "date": "2026-10-07",
+      "version": "0.1.0"
+    }
+  ],
   "repository": "https://github.com/Crawlora-org/crawlora-chesscom",
   "ruby_gem_name": "crawlora-chesscom",
   "rust_crate_name": "crawlora-chesscom",
   "rust_module_name": "crawlora_chesscom",
-  "source_contract_sha256": "5e1c92b8b286bf7b9e57ebf5ffd4eb2fb0f6bb7b841166163f14922129cae144",
-  "version": "0.1.0"
+  "source_contract_sha256": "a4248c6057b557ae0bf5ac08aa945ae1a7dbbc8acd135e8283ef5f51e3142226",
+  "version": "0.1.1"
 }

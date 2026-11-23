@@ -8,7 +8,7 @@ The official Java client for Crawlora's hosted Chess.com API. It exposes 26 endp
 <dependency>
   <groupId>net.crawlora</groupId>
   <artifactId>crawlora-chesscom</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 

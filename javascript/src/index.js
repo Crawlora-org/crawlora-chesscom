@@ -9,7 +9,7 @@ import {
 
 export class ChessComClient extends CrawloraClient {
   constructor(options = {}) {
-    super({ ...options, userAgent: options.userAgent ?? "crawlora-chesscom-js/0.1.0" });
+    super({ ...options, userAgent: options.userAgent ?? "crawlora-chesscom-js/0.1.1" });
     this["club"] = (...args) => this.request("chesscom-club", ...args);
     this["clubMatches"] = (...args) => this.request("chesscom-club-matches", ...args);
     this["clubMembers"] = (...args) => this.request("chesscom-club-members", ...args);
@@ -48,5 +48,5 @@ export {
   CrawloraServerError
 };
 export { groups, operations, operationCount, OperationIds } from "./operations.js";
-export const VERSION = "0.1.0";
+export const VERSION = "0.1.1";
 export default ChessComClient;

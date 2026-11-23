@@ -7,7 +7,7 @@ from .async_client import AsyncCrawloraClient
 class ChessComClient(CrawloraClient):
     """Synchronous Chess.com API client."""
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        kwargs.setdefault('user_agent', 'crawlora-chesscom-python/0.1.0')
+        kwargs.setdefault('user_agent', 'crawlora-chesscom-python/0.1.1')
         super().__init__(*args, **kwargs)
 
     def club(self, **params: Any) -> Any:
@@ -169,7 +169,7 @@ class ChessComClient(CrawloraClient):
 class AsyncChessComClient(AsyncCrawloraClient):
     """Asynchronous Chess.com API client."""
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        kwargs.setdefault('user_agent', 'crawlora-chesscom-python/0.1.0')
+        kwargs.setdefault('user_agent', 'crawlora-chesscom-python/0.1.1')
         super().__init__(*args, **kwargs)
 
     async def club(self, **params: Any) -> Any:

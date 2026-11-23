@@ -8,7 +8,7 @@ Official Crawlora client packages for the hosted Chess.com API. Access 26 API en
 - Python: [`crawlora-chesscom`](python/README.md)
 - Go: [`github.com/Crawlora-org/crawlora-chesscom`](go.mod)
 - Ruby: [`crawlora-chesscom`](ruby/README.md)
-- Java: [`net.crawlora:crawlora-chesscom:0.1.0`](java/README.md)
+- Java: [`net.crawlora:crawlora-chesscom:0.1.1`](java/README.md)
 - PHP: [`crawlora/chesscom`](php/README.md)
 - Rust: [`crawlora-chesscom`](rust/README.md)
 

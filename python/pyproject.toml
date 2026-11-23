@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crawlora-chesscom"
-version = "0.1.0"
+version = "0.1.1"
 description = "Crawlora Chess.com API client with 26 endpoints for puzzles, player and club resources, tournaments, and public team matches"
 readme = "README.md"
 keywords = ["crawlora", "api-client", "sdk", "web-scraping", "scraping-api", "chesscom", "chess-com", "chesscom-api", "chess-com-api", "chesscom-scraper", "chess-com-scraper", "chesscom-data", "chess-com-data", "chesscom-puzzles", "chesscom-player-club-resources", "chesscom-tournaments", "chesscom-public-team-matches"]

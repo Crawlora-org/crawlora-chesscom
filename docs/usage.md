@@ -2,7 +2,7 @@
 
 This reference lists all 26 public Chess.com API endpoints exposed by the JavaScript/TypeScript, Python, Go, Ruby, Java, PHP, and Rust clients, including the `@crawlora-org/chesscom`, `crawlora-chesscom`, and `crawlora-chesscom` packages. The clients call Crawlora's hosted API. Set `CRAWLORA_API_KEY` to a key for your Crawlora account before making requests. Service usage is billed under that account. These clients do not run a browser or scrape Chess.com locally; Crawlora is independent from and not endorsed by Chess.com or its owners.
 
-The package tracks the public API contract revision `sha256:24942ed44f40dfeeb9e9c8cb74152690adfab8ebe286196ee747524c2007a928` bundled with release `0.1.0`. Maintainers can preview daily contract updates with the repository's `Sync live API contract` workflow; unchanged contracts do not produce package releases.
+The package tracks the public API contract revision `sha256:bb52aafac634d8bd443235e38fe6f1e7503b53f83d9e87a10df59858337a4628` bundled with release `0.1.1`. Maintainers can preview daily contract updates with the repository's `Sync live API contract` workflow; unchanged contracts do not produce package releases.
 
 All language packages expose the selected public API operations in the bundled contract. JavaScript uses camelCase methods, Python and Rust use snake_case methods. JavaScript, Python, and Rust methods are grouped under `chesscom`; Rust uses typed parameter structs and returns the complete HTTP response.
 

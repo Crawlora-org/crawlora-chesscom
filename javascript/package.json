@@ -1,6 +1,6 @@
 {
   "name": "@crawlora-org/chesscom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Crawlora Chess.com API client with 26 endpoints for puzzles, player and club resources, tournaments, and public team matches",
   "homepage": "https://crawlora.net/?utm_source=npm&utm_medium=referral&utm_campaign=platform-clients&utm_content=chesscom-javascript-homepage",
   "bugs": { "url": "https://github.com/Crawlora-org/crawlora-chesscom/issues" },

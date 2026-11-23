@@ -101,7 +101,7 @@
           "type": "string"
         },
         "pgn": {
-          "description": "Movetext only; PGN player/event headers are removed.",
+          "description": "Source PGN unchanged, including its header tags.",
           "type": "string"
         },
         "publish_time": {
@@ -1776,7 +1776,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Returns the current public Chess.com puzzle, including its source page link, publish time, FEN and PGN. It uses the read-only Published-Data API and does not request player/account data. This independent service is not affiliated with Chess.com.",
+        "description": "Returns the current public Chess.com puzzle, including its source page link, publish time, FEN and the source PGN including its header tags. It uses the read-only Published-Data API and does not request player/account data. This independent service is not affiliated with Chess.com.",
         "operationId": "chesscom-puzzle",
         "produces": [
           "application/json"
